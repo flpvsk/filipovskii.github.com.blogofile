@@ -22,9 +22,12 @@
     <header>
       ${self.header()}
     </header>
-    <div class="container">
-      <div class="row">
-        <div class="span12">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          ${self.sidebar()}
+        </div>
+        <div class="span9">
           ${next.body()}
         </div>
       </div>
@@ -57,6 +60,8 @@
 </%def>
 <%def name="footer()">
   <hr/>
-  This is a footer that appears on every page.
   <%include file="footer.mako" />
+</%def>
+<%def name="sidebar()">
+  <%include file="sidebar.mako" />
 </%def>

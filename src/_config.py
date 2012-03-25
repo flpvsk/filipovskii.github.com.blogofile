@@ -44,5 +44,8 @@ blog.name = "Your Blog's Name"
 # used in the RSS/Atom feeds.
 blog.description = "Your Blog's short description"
 
+blog.disqus.enabled = True
+blog.disqus.name = "filipovskiiblog"
+
 ## blog_timezone -- the timezone that you normally write your blog posts from
 blog.timezone = "US/Eastern"
