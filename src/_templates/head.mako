@@ -3,5 +3,8 @@
 <link rel="alternate" type="application/atom+xml" title="Atom 1.0"
 href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/atom')}" />
 <link rel='stylesheet' href='${bf.config.filters.syntax_highlight.css_dir}/pygments_${bf.config.filters.syntax_highlight.style}.css' type='text/css' />
-<link rel="stylesheet" href="css/style.css" />
-<script src="js/libs/modernizr-2.5.3.min.js"></script>
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+<script src="/js/libs/modernizr-2.5.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>

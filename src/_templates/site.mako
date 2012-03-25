@@ -19,26 +19,29 @@
   </head>
   <body>
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-    <div id="content">
+    <header>
       ${self.header()}
-      <div id="main_block">
-        <div id="prose_block">
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span12">
           ${next.body()}
-        </div><!-- End Prose Block -->
-      </div><!-- End Main Block -->
-      <div id="footer">
-        ${self.footer()}
-      </div> <!-- End Footer -->
-    </div> <!-- End Content -->
+        </div>
+      </div>
+    </div>
+    <footer>
+      ${self.footer()}
+    </footer>
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/script.js"></script>
 
     <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+      var _gaq=[['_setAccount','UA-21702849-4'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));

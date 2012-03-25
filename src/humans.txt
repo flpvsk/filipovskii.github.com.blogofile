@@ -3,10 +3,9 @@
 
 
 /* TEAM */
-  <your title>: <your name>
-  Site:
-  Twitter:
-  Location:
+  Site: filipovskii.github.com
+  Twitter: https://twitter.com/#!/filipovskii
+  Location: RU/Moscow
 
 /* THANKS */
   Names (& URL):
