@@ -24,7 +24,7 @@
     </header>
     <div class="container-fluid">
       <div class="row">
-        <div class="span7">
+        <div class="span7 offset1">
           ${next.body()}
         </div>
         <div class="span3 offset2">

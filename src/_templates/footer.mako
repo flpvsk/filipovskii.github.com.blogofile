@@ -1,6 +1,5 @@
 <p id="credits">
 Powered by <a href="http://www.blogofile.com">Blogofile</a>.<br/>
-<br/>
 RSS feeds for <a href="${bf.util.site_path_helper(bf.config.blog.path,'feed')}">Entries</a>
 % if bf.config.blog.disqus.enabled:
  and <a

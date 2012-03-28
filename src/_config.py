@@ -38,7 +38,7 @@ blog.path = ""
 
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
-blog.name = "Coding for good"
+blog.name = "Coding for Good"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.
