@@ -23,12 +23,12 @@
       ${self.header()}
     </header>
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          ${self.sidebar()}
-        </div>
-        <div class="span9">
+      <div class="row">
+        <div class="span7">
           ${next.body()}
+        </div>
+        <div class="span3 offset2">
+          ${self.sidebar()}
         </div>
       </div>
     </div>
@@ -42,6 +42,7 @@
 
     <script src="/js/plugins.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     <script>
       var _gaq=[['_setAccount','UA-21702849-4'],['_trackPageview']];
