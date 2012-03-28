@@ -38,11 +38,11 @@ blog.path = ""
 
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
-blog.name = "Your Blog's Name"
+blog.name = "Coding for good"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.
-blog.description = "Your Blog's short description"
+blog.description = "Technology in superhero style"
 
 blog.disqus.enabled = True
 blog.disqus.name = "filipovskiiblog"
