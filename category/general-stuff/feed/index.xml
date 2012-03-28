@@ -7,10 +7,10 @@
      xmlns:wfw="http://wellformedweb.org/CommentAPI/"
      >
   <channel>
-    <title>Your Blog's Name</title>
+    <title>Coding for good</title>
     <link>http://filipovskii.github.com</link>
-    <description>Your Blog's short description</description>
-    <pubDate>Sun, 25 Mar 2012 13:21:54 GMT</pubDate>
+    <description>Technology in superhero style</description>
+    <pubDate>Wed, 28 Mar 2012 10:01:11 GMT</pubDate>
     <generator>Blogofile</generator>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>
@@ -35,7 +35,8 @@
       <category><![CDATA[General Stuff]]></category>
       <guid isPermaLink="true">http://filipovskii.github.com/2009/08/29/post-7</guid>
       <description>Post 7</description>
-      <content:encoded><![CDATA[<p>This is post #7</p>]]></content:encoded>
+      <content:encoded><![CDATA[<p>This is post #7
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>]]></content:encoded>
     </item>
     <item>
       <title>Post 6</title>

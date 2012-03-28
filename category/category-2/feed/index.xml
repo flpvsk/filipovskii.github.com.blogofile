@@ -7,10 +7,10 @@
      xmlns:wfw="http://wellformedweb.org/CommentAPI/"
      >
   <channel>
-    <title>Your Blog's Name</title>
+    <title>Coding for good</title>
     <link>http://filipovskii.github.com</link>
-    <description>Your Blog's short description</description>
-    <pubDate>Sun, 25 Mar 2012 13:21:54 GMT</pubDate>
+    <description>Technology in superhero style</description>
+    <pubDate>Wed, 28 Mar 2012 10:01:11 GMT</pubDate>
     <generator>Blogofile</generator>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>

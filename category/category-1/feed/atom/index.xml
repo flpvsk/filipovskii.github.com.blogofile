@@ -4,10 +4,10 @@
   xmlns:thr="http://purl.org/syndication/thread/1.0"
   xml:lang="en"
    >
-  <title type="text">Your Blog's Name</title>
-  <subtitle type="text">Your Blog's short description</subtitle>
+  <title type="text">Coding for good</title>
+  <subtitle type="text">Technology in superhero style</subtitle>
 
-  <updated>2012-03-25T13:21:54Z</updated>
+  <updated>2012-03-28T10:01:11Z</updated>
   <generator uri="http://blogofile.com/">Blogofile</generator>
 
   <link rel="alternate" type="text/html" href="http://filipovskii.github.com" />

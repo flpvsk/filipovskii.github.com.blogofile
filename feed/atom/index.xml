@@ -4,10 +4,10 @@
   xmlns:thr="http://purl.org/syndication/thread/1.0"
   xml:lang="en"
    >
-  <title type="text">Your Blog's Name</title>
-  <subtitle type="text">Your Blog's short description</subtitle>
+  <title type="text">Coding for good</title>
+  <subtitle type="text">Technology in superhero style</subtitle>
 
-  <updated>2012-03-25T13:21:54Z</updated>
+  <updated>2012-03-28T10:01:11Z</updated>
   <generator uri="http://blogofile.com/">Blogofile</generator>
 
   <link rel="alternate" type="text/html" href="http://filipovskii.github.com" />
@@ -44,7 +44,8 @@
     <published>2009-08-29T15:25:00Z</published>
     <category scheme="http://filipovskii.github.com" term="General Stuff" />
     <summary type="html"><![CDATA[Post 7]]></summary>
-    <content type="html" xml:base="http://filipovskii.github.com/2009/08/29/post-7"><![CDATA[<p>This is post #7</p>]]></content>
+    <content type="html" xml:base="http://filipovskii.github.com/2009/08/29/post-7"><![CDATA[<p>This is post #7
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>]]></content>
   </entry>
   <entry>
     <author>
