@@ -1,6 +1,6 @@
 <title>${bf.config.blog.name}</title>
 
-<link rel="shortcut icon" href="favicon.ico" >
+<link rel="shortcut icon" href="/favicon.ico" >
 
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="${bf.util.site_path_helper(bf.config.blog.path,'/feed')}" />
 <link rel="alternate" type="application/atom+xml" title="Atom 1.0"
