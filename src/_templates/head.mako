@@ -8,7 +8,7 @@ href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/atom')}" />
 <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="/css/custom.css" />
 
-// fonts
+<!-- fonts -->
 <link href="http://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet" type="text/css">
 
 <script src="/js/libs/modernizr-2.5.3.min.js"></script>

@@ -1,9 +1,27 @@
 body {
   background-color: #F8FAF0;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 22px;
+}
+li {
+  line-height: 22px;
+}
+p {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 22px;
 }
 pre {
   background-color: wheat;
+  font-size: 14px;
+  line-height: 20px;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Fugaz One';
+}
+
+
+h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+  color: #08C
 }
