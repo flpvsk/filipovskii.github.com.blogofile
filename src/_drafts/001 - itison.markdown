@@ -1,6 +1,6 @@
 ---
 categories: Blogging
-tags: 'blogofile html5boilerplate bootstrap github'
+tags: blogofile, html5 boilerplate, twitter bootstrap, github
 date: 2012/04/01 00:00:00
 title: It's on!
 ---
@@ -16,7 +16,17 @@ title: It's on!
 
 Конечно, есть огромное количество специализированных ресурсов, вроде livejournal и wordpress. Но я не хотел с ними связываться: дизайн перегружен, нужно мириться с рекламой или брать платный акк. Да и вообще не по-гиковски как-то. Так что решил делать всё сам. Дальше расскажу как и покажу как, дам ссылки на бранчи - шаблоны, на случай если вы захотите соорудить нечто с тем же стеком. А именно:
 
-*   [blogofile]()
-*   [html5 boilerplate]()
-*   [twitter bootstrap]()
-*   [github pages]().
+*   [blogofile](http://www.blogofile.com/) python-powered собиратель сайтов
+*   [html5 boilerplate](http://html5boilerplate.com/) HTML/CSS/JS шаблон
+*   [twitter bootstrap]() любимый CSS фреймворк
+*   [github pages]() бесплатный хостинг
+
+### Blogofile
+
+Blogofile - компилятор статических сайтов, изначально придуманный как раз для блогов. Структура типичного blogofile-проекта содержит шаблоны (templates), контроллеры (), посты (), и фильтры (). Немного о каждом.
+
+##### Шаблоны (Templates)
+
+С этими всё ясно. Blogofile использует [Mako]() для написания переиспользуемых html-шаблонов.
+
+Умеет много всего, меня же заинтересовало его python-происхождение, поддержка markdown разметки, подсветка синтаксиса
