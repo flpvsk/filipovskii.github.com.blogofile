@@ -21,12 +21,51 @@ title: It's on!
 *   [twitter bootstrap]() любимый CSS фреймворк
 *   [github pages]() бесплатный хостинг
 
-### Blogofile
+## Blogofile
 
 Blogofile - компилятор статических сайтов, изначально придуманный как раз для блогов. Структура типичного blogofile-проекта содержит шаблоны (templates), контроллеры (), посты (), и фильтры (). Немного о каждом.
 
-##### Шаблоны (Templates)
+### Шаблоны
 
-С этими всё ясно. Blogofile использует [Mako]() для написания переиспользуемых html-шаблонов.
+С этими всё ясно. Blogofile использует [Mako]() в качестве движка. Глубоко я в нём не разбирался, этого и не потребовалось. Если вы хотя бы немного знакомы с html и python, этого должно хватить. Вот пример, в котором 2 последних поста рендерятся в html список.
+
+Шаблон:
+
+$$code(lang=mako)
+<ul class="nav nav-list">
+    <li class="nav-header">Last 2 posts:</li>
+% for post in bf.config.blog.posts[:2]:
+    <li>
+      <a href="${post.path}">
+        ${post.date.year}.${self.pad(post.date.month)}.${self.pad(post.date.day)}
+        -
+        ${post.title}
+      </a>
+    </li>
+% endfor
+</ul>
+
+<%def name="pad(s)">${"{:#02}".format(s)}</%def>
+$$/code
+
+Результат:
+
+$$code(lang=html)
+<ul class="nav nav-list">
+    <li class="nav-header">Last 2 posts:</li>
+    <li>
+      <a href="/2012/04/01/it's-on!">
+        2012.04.01 - It's on!
+      </a>
+    </li>
+    <li>
+      <a href="/2009/08/29/syntax-highlight-test">
+        2009.08.29 - Syntax highlight test
+      </a>
+    </li>
+</ul>
+$$/code
+
+Довольно просто, а?
 
 Умеет много всего, меня же заинтересовало его python-происхождение, поддержка markdown разметки, подсветка синтаксиса
