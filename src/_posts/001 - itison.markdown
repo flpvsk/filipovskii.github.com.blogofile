@@ -23,49 +23,43 @@ title: It's on!
 
 ## Blogofile
 
-Blogofile - компилятор статических сайтов, изначально придуманный как раз для блогов. Структура типичного blogofile-проекта содержит шаблоны (templates), контроллеры (), посты (), и фильтры (). Немного о каждом.
+Blogofile - компилятор статических сайтов, изначально придуманный как раз для блогов. Из коробки этот движок поддерживает такие вкусности, как [markdown]() (textile, reStructuredText) разметка, комментирование с [disqus](). Ещё больше интересных фич ожидается в [следующей версии](http://www.blogofile.com/blog/2011/04/30/preview-of-blogofile-0.8/). К тому же, API движка довольно прозрачное, так что добавление функционала не проблема. Болванка блога, сгенерированная с помощью `blogofile init simple_bolg` [ [github]() ]:
 
-### Шаблоны
+    .
+    ├── _config.py
+    ├── _controllers
+    │   ├── blog
+    │   │   ├── archives.py
+    │   │   ├── categories.py
+    │   │   ├── chronological.py
+    │   │   ├── feed.py
+    │   │   ├── __init__.py
+    │   │   ├── permapage.py
+    │   │   └── post.py
+    │   └── org.py
+    ├── _filters
+    │   ├── markdown_template.py
+    │   ├── rst_template.py
+    │   ├── syntax_highlight.py
+    │   └── textile_template.py
+    ├── index.html.mako
+    ├── _posts
+    │   ├── 001 - post 1.markdown
+    │   ├── 002 - post 2.markdown
+    |   ...
+    │   └── 008 - post 8 - syntax highlight.markdown
+    └── _templates
+        ├── atom.mako
+        ├── base.mako
+        ...
+        └── site.mako
 
-С этими всё ясно. Blogofile использует [Mako]() в качестве движка. Глубоко я в нём не разбирался, этого и не потребовалось. Если вы хотя бы немного знакомы с html и python, этого должно хватить. Вот пример, в котором 2 последних поста рендерятся в html список.
+С *постами* всё ясно. Они содержат yaml - заголовок и контент на вашем любимом языке разметки.
 
-Шаблон:
+*Контроллеры* генерят статический контент. Если вам, к примеру, нужна страничка, содержащаю все посты блога в обратном хронологическом порядке, по 5 штук на странице - этим занимается контроллер. И в болванке блога уже есть такой: `chronological.py`. 
 
-$$code(lang=mako)
-<ul class="nav nav-list">
-    <li class="nav-header">Last 2 posts:</li>
-% for post in bf.config.blog.posts[:2]:
-    <li>
-      <a href="${post.path}">
-        ${post.date.year}.${self.pad(post.date.month)}.${self.pad(post.date.day)}
-        -
-        ${post.title}
-      </a>
-    </li>
-% endfor
-</ul>
+*Фильтры* - это методы преобразования контента. Например, `markdown_template.py` преобразует markdown-разметку в html.
 
-<%def name="pad(s)">${"{:#02}".format(s)}</%def>
-$$/code
+*Шаблоны* определяют вид нашего сайта. Для этих целей blogofile использует движок [Mako]().
 
-Результат:
-
-$$code(lang=html)
-<ul class="nav nav-list">
-    <li class="nav-header">Last 2 posts:</li>
-    <li>
-      <a href="/2012/04/01/it's-on!">
-        2012.04.01 - It's on!
-      </a>
-    </li>
-    <li>
-      <a href="/2009/08/29/syntax-highlight-test">
-        2009.08.29 - Syntax highlight test
-      </a>
-    </li>
-</ul>
-$$/code
-
-Довольно просто, а?
-
-Умеет много всего, меня же заинтересовало его python-происхождение, поддержка markdown разметки, подсветка синтаксиса
+*_config.py* содержит настройки сайта.
