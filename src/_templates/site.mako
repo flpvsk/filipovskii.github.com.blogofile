@@ -27,7 +27,7 @@
         <div class="span7 offset1">
           ${next.body()}
         </div>
-        <div class="span3 offset2">
+        <div class="span3 offset1">
           ${self.sidebar()}
         </div>
       </div>
