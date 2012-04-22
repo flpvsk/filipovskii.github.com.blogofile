@@ -11,12 +11,12 @@ title: It's on!
 
 *   [blogofile](http://www.blogofile.com/) python-powered собиратель сайтов
 *   [html5 boilerplate](http://html5boilerplate.com/) HTML/CSS/JS шаблон
-*   [twitter bootstrap]() любимый CSS фреймворк
-*   [github pages]() бесплатный хостинг
+*   [twitter bootstrap](http://twitter.github.com/bootstrap/) любимый CSS фреймворк
+*   [github pages](http://pages.github.com/) бесплатный хостинг
 
 ## Blogofile
 
-Blogofile - компилятор статических сайтов, изначально придуманный как раз для блогов. Из коробки этот движок поддерживает такие вкусности, как [markdown]() (textile, reStructuredText) разметка, комментирование с [disqus](), подсветка синтаксиса. Ещё больше интересных фич ожидается в [следующей версии](http://www.blogofile.com/blog/2011/04/30/preview-of-blogofile-0.8/). К тому же, API движка довольно прозрачное, так что добавление функционала не проблема. Болванка блога, сгенерированная с помощью `blogofile init simple_bolg` [ [github]() ]:
+Blogofile - компилятор статических сайтов, изначально придуманный как раз для блогов. Из коробки этот движок поддерживает такие вкусности, как [markdown](http://daringfireball.net/projects/markdown/) (textile, reStructuredText) разметка, комментирование с [disqus](http://disqus.com/), подсветка синтаксиса. Ещё больше интересных фич ожидается в [следующей версии](http://www.blogofile.com/blog/2011/04/30/preview-of-blogofile-0.8/). К тому же, API движка довольно прозрачное, так что добавление функционала не проблема. Болванка блога, сгенерированная с помощью `blogofile init simple_bolg` [ [github](https://github.com/filipovskii/filipovskii.github.com/branches/blogofile_init) ]:
 
     .
     ├── _config.py
@@ -46,16 +46,16 @@ Blogofile - компилятор статических сайтов, изнач
 
 *Фильтры* - это методы преобразования контента. Например, `markdown_template.py` преобразует markdown-разметку в html.
 
-*Шаблоны* определяют вид нашего сайта. Для этих целей blogofile использует движок [Mako]().
+*Шаблоны* определяют вид нашего сайта. Для этих целей blogofile использует движок [Mako](http://www.makotemplates.org/).
 
 *_config.py* содержит настройки сайта.
 
 
 ## html5 boilerplate and twitter bootstrap
 
-Эти фреймворки гораздо более популярны. Про `html5 boilerplate` можно почитать на [их сайте]() или [на хабре](). Подключить его не составило труда, [вот]().
+Эти фреймворки гораздо более популярны. Про `html5 boilerplate` можно почитать на [их сайте](http://ru.html5boilerplate.com/). Подключить его не составило труда, [вот](https://github.com/filipovskii/filipovskii.github.com/tree/boilerplate).
 
-Bootstrap также отлично [задокументирован](), прост в использовании, и отлично поддаётся кастомизации. [Так]() выглядит блог после его подключения.
+Bootstrap также отлично [задокументирован](http://twitter.github.com/bootstrap/), прост в использовании, и отлично поддаётся кастомизации. [Так](https://github.com/filipovskii/filipovskii.github.com/tree/bootstrap) выглядит блог после его подключения.
 
 ## Github pages
 
