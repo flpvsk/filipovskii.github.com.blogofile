@@ -4,13 +4,6 @@ tags: blogofile, html5 boilerplate, twitter bootstrap, github
 date: 2012/04/01 00:00:00
 title: It's on!
 ---
-1.  Motivation
-2.  Process
-    *   Blogofile
-    *   html5 boilerplate
-    *   twitter bootstrap
-    *   github pages
-3.  Resume, plans
 
 In life of every developer there is a time, when you are no longer able to keep all that crap in mind. Algorithms and data structures, programming languages, frameworks and methodologies, VIM hotkeys, grocery lists ... aggrhh!! In such moments you either have to get rid of part of the knowledge, or come up with new ways of arranging and storing it. There are 2-3 workbooks in my backpack for such case in my backpack all the time, scribbled with fragments of lectures, problem solvings, pieces of code and simple discussions about the nature of all things. And it solves some part of the problem. But workbooks wear out, burn and sometimes dissapear for no reason.. Things get even worth if you want to share the knowledge with somebody. So, sooner or later, every developer starts a blog. Same happened to me this spring.
 
@@ -66,17 +59,15 @@ This tools are way more popular than blogofile, so I won't tell much about them.
 
 ## Github pages
 
-[Github pages](http://pages.github.com/) is a free hosting of static content. Idea behind the project is to give an opportunity to place some info about you or your GitHub project. It supports [Jekyll](https://github.com/mojombo/jekyll), another static site compiler, by default. This one is written in Ruby and is definatly worth a look.
+[Github pages](http://pages.github.com/) is a free hosting of static content. Idea behind the project is to give an opportunity to place some info about you or your GitHub project. It supports [Jekyll](https://github.com/mojombo/jekyll), another static site compiler, by default. This one is written in Ruby and is definitely worth a look.
 
-Service can be used for user and project pages. 
+Service can be used for user and project pages. In order to create user page, you have to make a repo with the name like `[your-github-username].github.com`, commit file `index.html` to its master branch and push it to GitHub. Over time, this file will be published here: `http://[your-github-username].github.com/`.
 
-Сервис может использоваться для создания пользовательских страниц, и страниц проекта. Чтобы создать страницу пользователя, нужно создать репозиторий с именем вида `[username].github.com`, закомитить файл `index.html` в `master` бранч этого репозитория и запушить его на GitHub. Этот файл будет, через некоторое время, опубликован по ссылке: `http://[username].github.com/`.
+Project page can be created with generator, or manually by creating `gh-pages` branch of your project.
 
-Страницу проекта можно создать с помощью генератора. Или вручную, создав бранч `gh-pages` в репозитории проекта.
-
-Более подробно об использовании этого сервиса можно почитать [здесь](http://help.github.com/pages/).
+You can learn more about this project [here](http://help.github.com/pages/).
 
 
 ## Instead of conclusion
 
-
+I've found, what I was looking for. With given stack, it became possible to create simple, customizable, cute blog. My future plans are to learn this thing to generate `pdf`, `epub` or `mobi` content, work on it's design and, hopefully, start writing regularly. But for now, it had been much more interesting to create this blog, then to write something in it ... maybe blogging is not for me..?
