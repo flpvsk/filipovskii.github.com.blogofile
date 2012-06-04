@@ -49,3 +49,5 @@ blog.disqus.name = "filipovskiiblog"
 
 ## blog_timezone -- the timezone that you normally write your blog posts from
 blog.timezone = "US/Eastern"
+
+filters.syntax_highlight.style = "monokai"

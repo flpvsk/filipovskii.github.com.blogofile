@@ -1,7 +1,7 @@
 body {
   background-color: #F8FAF0;
   font-family: Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 22px;
 }
 li {
@@ -9,16 +9,16 @@ li {
 }
 p {
   font-family: Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 22px;
 }
 pre {
-  background-color: snow;
-  font-size: 14px;
+  background-color: #272822;
   line-height: 20px;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Fugaz One';
+  /*font-family: 'Fugaz One';*/
+  line-height: 36px;
 }
 header,footer {
   text-align: center;
