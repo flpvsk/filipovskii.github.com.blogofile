@@ -1,7 +1,7 @@
 ---
 categories: python
 tags: python, lastfm, urllib
-date: 2012/05/31 00:00:00
+date: 2012/06/04 00:00:00
 title: Calling last.fm with python
 ---
 
