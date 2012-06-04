@@ -7,7 +7,7 @@ title: Calling last.fm with python
 
 Recently I had to get data for one of the projects. It's music-related webapp,
 and we desperately needed some rock stars data in it. Well, maybe not so
-desperately, but anyway. Just in time, my friend and collegue remembered about
+desperately, but anyway. Just in time, my friend and colleague remembered about
 [last.fm](last.fm). Yeah, they have tons of rock stars and .. well, free API.
 
 API is really easy to use. In case you don't want to spend your time on
@@ -23,7 +23,7 @@ so it would be *deadly obvious*.
 
 For using lastfm API, you have to somehow tell them about your app. Do it
 by [applying to API account](http://www.last.fm/api/account). Once you're
-done, you should have `API_KEY` and `SECRET`. Replace Xs in `api.py` with
+done, you should have `API_KEY` and `API_SECRET`. Replace Xs in `api.py` with
 given values. I'll show, why we need it later.
 
 $$code(lang=python)
@@ -32,7 +32,7 @@ API_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 SECRET = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 $$/code
 
-#### Calling API, without interacting with user
+#### Making unsigned calls
 
 To get data, that does not require any user confirmation, you should simply
 send GET request with specific parameters. There is a function for building
@@ -87,13 +87,13 @@ $$/code
 
 #### User authorization
 
-I personally did not use any methods in the API, that require authorization,
-but I've wrote some code, so you could do it.
+I did not use any method in the API, that require authorization,
+but here is some code, so you could do it.
 
 First, you have to create a session for user. There is a `create_session()`
 method for that. The most valuable part of it looks like this:
 
-$$code(lang=python, style=monokai)
+$$code(lang=python)
 token_url = _make_request_url(method='auth.gettoken',
                           api_key=API_KEY)
 token_response = urllib.urlopen(token_url)
@@ -122,4 +122,34 @@ Here is what happening step by step:
 There is also some code, that deals with saving and reading *session_key* and
 lastfm *username* from file. It's not very interesting, so I'll just skip it.
 
+#### Making signed calls
 
+Signing requests in terms of lastfm API is passing one more parameter to
+server. Parameter is called `api_sig` and is md5 hashsum of all other request
+parameters concatenated in one string with `API_SECRET` in the end
+(like Name1Value1Name2Value2API\_SECRET).
+
+Here is how it can be done:
+
+$$code(lang=python)
+def _make_signed_request_url(**kwargs):
+    """Create URL for signed GET request
+    
+    More on this: http://www.last.fm/api/authspec
+    (see `8. Signing Calls`)
+
+    """
+    md5 = hashlib.md5()
+    for key in sorted(kwargs):
+        md5.update('{}{}'.format(key, kwargs[key]))
+    md5.update(SECRET)
+    kwargs['api_sig'] = md5.hexdigest()
+    return _make_request_url(**kwargs)
+$$/code
+
+You can use this method instead of `_make_request_url` in `call_lastfm_api` to
+make signed calls to API.
+
+#### That's all, folks!
+
+Feel free to contact me if you have any questions.
