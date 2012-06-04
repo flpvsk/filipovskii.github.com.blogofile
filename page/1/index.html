@@ -22,11 +22,11 @@
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed" />
 <link rel="alternate" type="application/atom+xml" title="Atom 1.0"
 href="/feed/atom" />
-<link rel='stylesheet' href='/css/pygments_murphy.css' type='text/css' />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="/css/custom.css" />
+<link rel='stylesheet' href='/css/pygments_monokai.css' type='text/css' />
 
 <!-- fonts -->
 <link href="http://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet" type="text/css">
@@ -51,6 +51,147 @@ href="/feed/atom" />
       <div class="row">
         <div class="span7 offset1">
           
+  
+<div class="blog_post">
+  <a name="calling-last.fm-with-python"></a>
+  <h2 class="blog_post_title"><a href="/2012/05/31/calling-last.fm-with-python" rel="bookmark" title="Permanent Link to Calling last.fm with python">Calling last.fm with python</a></h2>
+  <small>May 31, 2012 at 12:00 AM | categories: 
+
+<a href='/category/python'>python</a>
+ | <a href="http://filipovskii.github.com/2012/05/31/calling-last.fm-with-python#disqus_thread">View Comments</a>
+</small><p/>
+  <div class="post_prose">
+    
+  <p>Recently I had to get data for one of the projects. It's music-related webapp,
+and we desperately needed some rock stars data in it. Well, maybe not so
+desperately, but anyway. Just in time, my friend and colleague remembered about
+<a href="last.fm">last.fm</a>. Yeah, they have tons of rock stars and .. well, free API.</p>
+<p>API is really easy to use. In case you don't want to spend your time on
+writing a client for it and you're using python, you can use mine. It's right
+here, on <a href="https://github.com/filipovskii/lastfm-python-api">github</a>.</p>
+<h2>Mechanica Viscera</h2>
+<h4>Applying for API</h4>
+<p>As I said, API is really simple and so is the client. Let me dive into details,
+so it would be <em>deadly obvious</em>.</p>
+<p>For using lastfm API, you have to somehow tell them about your app. Do it
+by <a href="http://www.last.fm/api/account">applying to API account</a>. Once you're
+done, you should have <code>API_KEY</code> and <code>API_SECRET</code>. Replace Xs in <code>api.py</code> with
+given values. I'll show, why we need it later.</p>
+<div class="pygments_monokai"><pre><span class="n">ROOT_URL</span> <span class="o">=</span> <span class="s">&#39;http://ws.audioscrobbler.com/2.0/&#39;</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span>
+<span class="n">SECRET</span> <span class="o">=</span> <span class="s">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span>
+</pre></div>
+
+<h4>Making unsigned calls</h4>
+<p>To get data, that does not require any user confirmation, you should simply
+send GET request with specific parameters. There is a function for building
+URLs for such requests:</p>
+<div class="pygments_monokai"><pre><span class="k">def</span> <span class="nf">_make_request_url</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create URL for regular GET request&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">ROOT_URL</span> <span class="o">+</span> <span class="s">&#39;?&#39;</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;json&#39;</span>
+    <span class="n">url</span> <span class="o">+=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">url</span>
+</pre></div>
+
+<p>It creates an URL for GET request to ROOT_URL and maps all parameters,
+passed to the function as request parameters. We are expecting JSON, that's
+why <code>format</code> parameter is there.</p>
+<p>To send request call this:</p>
+<div class="pygments_monokai"><pre><span class="k">def</span> <span class="nf">_call_lastfm_api</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">**</span><span class="n">method_args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Call lastfm method with given parameters, return result JSON&quot;&quot;&quot;</span>
+    <span class="n">method_args</span><span class="p">[</span><span class="s">&#39;api_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">API_KEY</span>
+    <span class="n">method_args</span><span class="p">[</span><span class="s">&#39;method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">method_name</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">_make_request_url</span><span class="p">(</span><span class="o">**</span><span class="n">method_args</span><span class="p">)</span>
+    <span class="n">response_str</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_str</span><span class="p">)</span>
+</pre></div>
+
+<p>Yep, just pass <em>method_name</em>, <em>method_args</em> (except <code>api_key</code>, it's added
+inside the function), and get JSON back..</p>
+<p>Here are two examples, that use this functions: </p>
+<div class="pygments_monokai"><pre><span class="k">def</span> <span class="nf">get_top_artists_for_user</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Call *user.getTopArtists* method.</span>
+
+<span class="sd">    Description: http://www.last.fm/api/show/user.getTopArtists</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_call_lastfm_api</span><span class="p">(</span><span class="s">&#39;user.getTopArtists&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_artist_info</span><span class="p">(</span><span class="n">artist_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Call *artist.getInfo* method.</span>
+<span class="sd">    </span>
+<span class="sd">    Description: http://www.last.fm/api/show/artist.getInfo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_call_lastfm_api</span><span class="p">(</span><span class="s">&#39;artist.getInfo&#39;</span><span class="p">,</span>
+                            <span class="c"># non-ascii chars not supported..</span>
+                            <span class="n">artist</span><span class="o">=</span><span class="n">artist_name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">))</span>
+</pre></div>
+
+<h4>User authorization</h4>
+<p>I did not use any method in the API, that require authorization,
+but here is some code, so you could do it.</p>
+<p>First, you have to create a session for user. There is a <code>create_session()</code>
+method for that. The most valuable part of it looks like this:</p>
+<div class="pygments_monokai"><pre><span class="n">token_url</span> <span class="o">=</span> <span class="n">_make_request_url</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">&#39;auth.gettoken&#39;</span><span class="p">,</span>
+                          <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">)</span>
+<span class="n">token_response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">token_url</span><span class="p">)</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">token_response</span><span class="o">.</span><span class="n">read</span><span class="p">())[</span><span class="s">&#39;token&#39;</span><span class="p">]</span>
+
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;http://www.last.fm/api/auth/?api_key={}&amp;token={}&#39;</span>
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">,</span> <span class="n">token</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;Authorize request in your browser, then press Enter&#39;</span><span class="p">)</span>
+<span class="nb">raw_input</span><span class="p">()</span>
+
+<span class="n">session_req_url</span> <span class="o">=</span> <span class="n">_make_signed_request_url</span><span class="p">(</span>
+    <span class="n">method</span><span class="o">=</span><span class="s">&#39;auth.getsession&#39;</span><span class="p">,</span>
+    <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">)</span>
+
+<span class="n">session_response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">session_req_url</span><span class="p">)</span>
+</pre></div>
+
+<p>Here is what happening step by step:</p>
+<ol>
+<li>Get <em>token</em> from lastfm. Token is a temporary artifact, needed to
+    distinguish session requests.</li>
+<li>Using this token, request user approval, by pointing him to the browser.</li>
+<li>Once user approved it, we can request <em>session_key</em>. This key can be used
+    to make requests on behalf of user and has no expiration date.</li>
+</ol>
+<p>There is also some code, that deals with saving and reading <em>session_key</em> and
+lastfm <em>username</em> from file. It's not very interesting, so I'll just skip it.</p>
+<h4>Making signed calls</h4>
+<p>Signing requests in terms of lastfm API is passing one more parameter to
+server. Parameter is called <code>api_sig</code> and is md5 hashsum of all other request
+parameters concatenated in one string with <code>API_SECRET</code> in the end
+(like Name1Value1Name2Value2API_SECRET).</p>
+<p>Here is how it can be done:</p>
+<div class="pygments_monokai"><pre><span class="k">def</span> <span class="nf">_make_signed_request_url</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create URL for signed GET request</span>
+<span class="sd">    </span>
+<span class="sd">    More on this: http://www.last.fm/api/authspec</span>
+<span class="sd">    (see `8. Signing Calls`)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">md5</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">md5</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s">&#39;{}{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+    <span class="n">md5</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">SECRET</span><span class="p">)</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;api_sig&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">md5</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">_make_request_url</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+<p>You can use this method instead of <code>_make_request_url</code> in <code>call_lastfm_api</code> to
+make signed calls to API.</p>
+<h4>That's all, folks!</h4>
+<p>Feel free to contact me if you have any questions.</p>
+
+  </div>
+</div>
+
+
+
+  <div class="after_post"><a href="http://filipovskii.github.com/2012/05/31/calling-last.fm-with-python#disqus_thread">Read and Post Comments</a></div>
+  <hr class="interblog" />
   
 <div class="blog_post">
   <a name="it's-on!"></a>
@@ -135,6 +276,7 @@ href="/feed/atom" />
           
   <ul class="nav nav-list">
     <li class="nav-header">Last 10 posts:</li>
+    <li><a href="/2012/05/31/calling-last.fm-with-python">2012.05.31 - Calling last.fm with python</a></li>
     <li><a href="/2012/04/01/it's-on!">2012.04.01 - It's on!</a></li>
 </ul>
 
